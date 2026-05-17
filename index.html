@@ -25,7 +25,9 @@
     .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px 60px;position:relative}
     .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 50% 30%,rgba(168,85,247,.15) 0%,transparent 70%);pointer-events:none}
     .hero-badge{display:inline-block;background:var(--card2);border:1px solid var(--border);border-radius:20px;padding:4px 16px;font-size:13px;color:var(--muted);margin-bottom:24px}
-    .hero h1{font-size:clamp(36px,7vw,64px);font-weight:800;line-height:1.15;margin-bottom:16px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 50%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero h1{font-size:clamp(48px,10vw,80px);font-weight:800;line-height:1.2;margin-bottom:8px;background:linear-gradient(135deg,#fff 0%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.05em}
+    .hero-subtitle{font-size:clamp(22px,4vw,36px);font-weight:700;line-height:1.3;margin-bottom:8px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-slogan{font-size:clamp(18px,3.2vw,28px);font-weight:600;line-height:1.4;margin-bottom:32px;background:linear-gradient(135deg,var(--gold) 0%,#FF8C00 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:0.02em}
     .hero p{font-size:clamp(16px,2.5vw,20px);color:var(--muted);max-width:600px;margin-bottom:40px}
     .hero-buttons{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
     .btn-primary{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:14px 32px;border-radius:10px;font-size:16px;font-weight:600;border:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
@@ -93,7 +95,9 @@
 
 <div class="hero">
   <div class="hero-badge">🧊 三阶魔方还原教学</div>
-  <h1>魔易APP<br>学魔方的随身专属教练<br>从此告别学不会魔方的历史</h1>
+  <h1>魔易</h1>
+  <div class="hero-subtitle">学魔方的随身专属教练</div>
+  <div class="hero-slogan">从此告别学不会魔方的历史</div>
   <p>1个万能手法、4个动作、7步还原整个魔方。3D实时演示，魔易APP手把手教你轻松学会。</p>
   <div class="hero-buttons">
     <a href="#download" class="btn-primary">⬇ 免费下载魔易</a>
