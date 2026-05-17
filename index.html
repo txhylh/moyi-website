@@ -70,6 +70,59 @@
     .footer a{color:var(--muted);margin:0 8px}
     .footer a:hover{color:var(--text)}
 
+    /* 二维码弹窗 (Modal) 样式 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      text-align: center;
+      max-width: 320px;
+      width: 90%;
+    }
+    .modal-close {
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--muted);
+      cursor: pointer;
+      line-height: 1;
+    }
+    .modal-close:hover {
+      color: var(--text);
+    }
+    .modal-qr-img {
+      width: 200px;
+      height: 200px;
+      margin: 20px auto;
+      display: block;
+      background: #fff; /* 白色背景衬托二维码 */
+      padding: 10px;
+      border-radius: 8px;
+    }
+    .modal-qr-text {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 15px;
+    }
+    .modal-qr-text strong {
+      color: var(--text);
+      font-size: 18px;
+      user-select: all; /* 允许用户选中复制 */
+    }
+
     @media(max-width:640px){
       .nav-links a:not(.nav-download){display:none}
       .features{grid-template-columns:1fr}
@@ -186,7 +239,26 @@
 <div class="section" id="contact" style="text-align:center">
   <div class="section-title">客户服务</div>
   <div style="display:flex;flex-direction:column;gap:12px;align-items:center;margin-top:16px">
-    <p style="color:var(--muted);font-size:15px">魔易官方魔友交流群：<a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=S6Poxq9Exg8UWilluvgc-qi81cnh8UhC&jump_from=webapi&authKey=e5kZnVMpjsuGtki2T8iJ3Fj7WkOxheSNIASpQPpnpobrTi4Ud1EDd1he94hcQCOy" style="color:var(--accent)">1092600074</a></p>
+    <p style="color:var(--muted);font-size:15px">魔易官方魔友交流群：<a id="qq-group-link" target="_blank" style="color:var(--accent);cursor:pointer">1092600074</a></p>
+    <script>
+    (function(){
+      var el = document.getElementById('qq-group-link');
+      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      var qunKey = 'S6Poxq9Exg8UWilluvgc-qi81cnh8UhC';
+
+      if (!isMobile) {
+        // 电脑端使用HTTPS链接
+        el.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=' + qunKey + '&jump_from=webapi&authKey=e5kZnVMpjsuGtki2T8iJ3Fj7WkOxheSNIASpQPpnpobrTi4Ud1EDd1he94hcQCOy';
+      } else {
+        // 手机端：点击弹出二维码引导弹窗
+        el.href = 'javascript:void(0);';
+        el.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('qr-modal-overlay').style.display = 'flex';
+        });
+      }
+    })();
+    </script>
     <p style="color:var(--muted);font-size:15px">联系邮箱：<a href="mailto:moyisuport@foxmail.com" style="color:var(--accent)">moyisuport@foxmail.com</a></p>
     <p style="color:var(--muted);font-size:15px">官方网站：<a href="https://txhylh.github.io/moyi-website" style="color:var(--accent)">https://txhylh.github.io/moyi-website</a></p>
   </div>
@@ -195,6 +267,38 @@
 <div class="footer">
   <p>© 2026 魔易 App · <a href="service-agreement.html">用户服务协议</a> · <a href="privacy-policy.html">隐私政策</a> · 联系邮箱：moyisuport@foxmail.com</p>
 </div>
+
+<!-- 手机端二维码弹窗 -->
+<div id="qr-modal-overlay" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" id="qr-modal-close">×</span>
+    <h3 style="margin-bottom: 15px; color: var(--text);">扫码加入QQ群</h3>
+    <!-- 已替换为你本地的 qq-group-qr.png -->
+    <img src="qq-group-qr.png" alt="QQ群二维码" class="modal-qr-img" loading="lazy">
+    <div class="modal-qr-text">
+      <p>使用手机QQ扫一扫，加入群聊</p>
+      <p>或手动搜索群号：<strong id="qun-number-display">1092600074</strong></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    // 关闭弹窗的逻辑
+    var overlay = document.getElementById('qr-modal-overlay');
+    var closeBtn = document.getElementById('qr-modal-close');
+
+    closeBtn.addEventListener('click', function() {
+      overlay.style.display = 'none';
+    });
+
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay) {
+        overlay.style.display = 'none';
+      }
+    });
+  })();
+</script>
 
 </body>
 </html>
